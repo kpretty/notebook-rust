@@ -159,6 +159,7 @@ fn first_word(s: &String) -> usize {
     let bytes = s.as_bytes();
 
     for (i, item) in bytes.iter().enumerate() {
+        // * 解引用，元组裂变可以使用&item来接收，这样下面直接使用item就可以了
         if *item == b' ' {
             return i;
         }
