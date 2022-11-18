@@ -5,3 +5,5 @@
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/guess)
 # 二、常见编程概念
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/concept)
+# 三、所有权
+[🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/ownership)
