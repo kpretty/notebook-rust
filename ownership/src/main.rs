@@ -6,7 +6,9 @@ fn main() {
     // ownership_5();
     // ownership_6();
     // ownership_7();
-    println!("{}", first_word(&String::from("hello world")));
+    let s = String::from("hello world");
+
+    println!("{}", first_word(&s));
 }
 
 #[allow(dead_code)]
@@ -155,14 +157,14 @@ fn concat(s: &mut String) {
 
 
 // 编写一个函数，该函数接收一个用空格分隔单词的字符串，并返回在该字符串中找到的第一个单词。如果函数在该字符串中并未找到空格，则整个字符串就是一个单词
-fn first_word(s: &String) -> usize {
+fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();
 
-    for (i, item) in bytes.iter().enumerate() {
+    for (i, &item) in bytes.iter().enumerate() {
         // * 解引用，元组裂变可以使用&item来接收，这样下面直接使用item就可以了
-        if *item == b' ' {
-            return i;
+        if item == b' ' {
+            return &s[..i];
         }
     }
-    s.len()
+    &s[..]
 }
