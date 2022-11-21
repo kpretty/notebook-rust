@@ -7,3 +7,5 @@
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/concept)
 # 三、所有权
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/ownership)
+# 四、结构体
+[🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/rust-struct)
