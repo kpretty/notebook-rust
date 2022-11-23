@@ -11,3 +11,5 @@
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/rust-struct)
 # 五、枚举与模式匹配
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/enum-match)
+# 六、包管理
+[🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/package)
