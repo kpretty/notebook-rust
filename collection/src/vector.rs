@@ -2,6 +2,7 @@ pub fn main() {
     create_vector();
     add_vector();
     read_vector();
+    read_write_vector();
 }
 
 
@@ -54,4 +55,22 @@ fn read_vector() {
     }
     // 通过[]方式 越界会报错
     //let v2 = &v[10];
+    // for 循环 这里用引用同理
+    for x in &v {
+        println!("{}", x);
+    }
+}
+
+fn read_write_vector1() {
+    let mut v = vec![1, 2, 3, 4, 5];
+    // 在同一个作用域中进行读写会存在问题
+    let x = &v[1];
+    v.push(6);
+    // 有下面这句话就会报错，因为如果下面这行代码存在
+    // x 的作用于会延伸到71行，v.push 需要一个可变的引用，而67行已经获取到了一个不可变的引用
+    // 如果没有下面的代码 x 的生命周期在68行就结束了，不存在可变和不可变并存的情况
+    // todo 为什么要这么设计
+    // 因为 vector 在push的时候如果空间不足会开辟新的内存空间将数据复制到新的内存地址上，而x已经获取到了之前的引用
+    // v在push之后会发生x指向一个未知地址
+    //println!("x:{}", x);
 }
