@@ -42,7 +42,7 @@ pub mod front_of_house {
 }
 
 // 文件内引用模块的函数
-fn eat_at_restaurant() {
+pub fn eat_at_restaurant() {
     // 绝对路径
     crate::front_of_house::hosting::add_to_wait_list();
     // 相对路径
