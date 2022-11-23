@@ -13,3 +13,5 @@
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/enum-match)
 # 六、包管理
 [🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/package)
+# 七、集合
+[🚀传送门](https://github.com/kpretty/notebook-rust/tree/master/collection)
