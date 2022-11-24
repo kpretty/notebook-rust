@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn main() {
     create_string();
     update_string();
@@ -5,6 +6,7 @@ pub fn main() {
 }
 
 // 新建字符串
+#[allow(dead_code)]
 fn create_string() {
     // 通过关联函数
     // 创建空字符串
@@ -18,6 +20,7 @@ fn create_string() {
 }
 
 // 更新字符串
+#[allow(dead_code)]
 fn update_string() {
     let mut s = String::from("foo");
     // 追加，传入字符串切片，所以也不会发生所有权的移交，可以放心使用
@@ -35,6 +38,7 @@ fn update_string() {
 }
 
 // 索引字符串
+#[allow(dead_code)]
 fn index_string() {
     let s = "hello 你好".to_string();
     // 不允许通过索引下标获取，因为String底层使用vec<u8>存储，&s[1] 为获取第一个字节，
