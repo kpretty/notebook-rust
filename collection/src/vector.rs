@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn main() {
     create_vector();
     add_vector();
@@ -7,6 +8,7 @@ pub fn main() {
 
 
 // 创建vector
+#[allow(dead_code)]
 fn create_vector() {
     // 必须指定类型，否编译器无法推断
     let v: Vec<i32> = Vec::new();
@@ -20,6 +22,7 @@ fn create_vector() {
 }
 
 // add
+#[allow(dead_code)]
 fn add_vector() {
     // 默认为不可变类型，添加数据相当于修改集合
     let mut v: Vec<i32> = Vec::new();
@@ -31,6 +34,7 @@ fn add_vector() {
 }
 
 // read
+#[allow(dead_code)]
 fn read_vector() {
     let v = vec![1, 2, 3, 4, 5];
     // 看起来两种方式都能获取到数据，但涉及到所有权
@@ -61,7 +65,9 @@ fn read_vector() {
     }
 }
 
-fn read_write_vector1() {
+#[allow(dead_code)]
+#[allow(unused_variables)]
+fn read_write_vector() {
     let mut v = vec![1, 2, 3, 4, 5];
     // 在同一个作用域中进行读写会存在问题
     let x = &v[1];
