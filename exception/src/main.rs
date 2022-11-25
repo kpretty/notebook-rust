@@ -1,3 +1,5 @@
+mod non_recoverable;
+
 fn main() {
-    println!("Hello, world!");
+    non_recoverable::main();
 }
