@@ -2,7 +2,7 @@
 name = "exception"
 version = "0.1.0"
 edition = "2021"
-
+description = "rust 的异常处理"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
