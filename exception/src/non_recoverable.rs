@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn main() {
     // 出现 panic，rust默认会回溯栈，并清理遇到的每一个函数的数据
     // 因此回溯会有很多工作，另一种方式是 abort，rust程序直接终止
