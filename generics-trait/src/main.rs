@@ -1,19 +1,21 @@
+mod lifetime;
+
 use std::fmt::{Debug, Display, Formatter};
 
 fn main() {
     // let vec1 = vec![1, 2, 3, 4, 5];
     // search_max(&vec1);
     // 实例化泛型结构体
-    let _point = Point { x: 1, y: 1.1 };
+    // let _point = Point { x: 1, y: 1.1 };
     // 实现类似多态的概念
-    let people = People {};
-    say(&people);
-    say1(&people);
-    let dog = Dog {};
-    say(&dog);
-    say1(&dog);
-    say2(&people, &dog);
-    say3(&people, &dog);
+    // let people = People {};
+    // say(&people);
+    // say1(&people);
+    // let dog = Dog {};
+    // say(&dog);
+    // say1(&dog);
+    // say2(&people, &dog);
+    // say3(&people, &dog);
 }
 
 // 定义泛型方法，当前缺少泛型边界后续调试
