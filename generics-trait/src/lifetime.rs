@@ -40,3 +40,26 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
         y
     }
 }
+
+// 深入理解生命周期
+// 例如上述代码，如果返回值引用的生命周期与y没有关系，那么y可以不用声明生命周期
+fn longest_without_y<'a>(x: &'a str, y: &str) -> &'a str {
+    println!("和y:{}没有关系", y);
+    x
+}
+
+fn longest_with_x(x: &str) -> &str {
+    x
+}
+
+// 即使都声明了生命周期，但函数实际返回值与xy没有关系，也会报错
+// fn longest_without_x_y<'a>(x: &'a str, y: &'a str) -> &'a str {
+//     let result = String::from("和xy都没有关系的返回值");
+//     result.as_str()
+// }
+
+// 结构体生命周期
+// 存在的必要性：如果结构体需要存储变量的引用
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
