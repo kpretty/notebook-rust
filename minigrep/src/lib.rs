@@ -36,14 +36,18 @@ impl Config {
 }
 
 fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut result = Vec::new();
-    // step-2 修复无法通过测试的用例
-    for line in contents.lines() {
-        if line.contains(query) {
-            result.push(line);
-        }
-    }
-    result
+    // let mut result = Vec::new();
+    // // step-2 修复无法通过测试的用例
+    // for line in contents.lines() {
+    //     if line.contains(query) {
+    //         result.push(line);
+    //     }
+    // }
+    // result
+    // 使用迭代器优化
+    contents.lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
