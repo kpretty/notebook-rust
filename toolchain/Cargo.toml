@@ -1,0 +1,2 @@
+[workspace]
+members = ["print_table"]
