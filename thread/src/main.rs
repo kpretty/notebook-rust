@@ -1,9 +1,11 @@
+use std::sync::mpsc;
 use std::thread;
 use std::time::Duration;
 
 fn main() {
     //create_thread();
-    move_var_thread();
+    // move_var_thread();
+    demo_channel();
 }
 
 fn create_thread() {
@@ -29,6 +31,20 @@ fn move_var_thread() {
     let handle = thread::spawn(move || {
         println!("{:?}", vec1);
     });
+    // move 会改变所有权，将值的所有权移交到线程中，线程结束后生命周期结束
+    // println!("{:?}",vec1);
 
     handle.join().unwrap();
+}
+
+// 通过channel进行消息传递
+fn demo_channel() {
+    let (producer, consumer) = mpsc::channel();
+    // 开启新线程来发送消息
+    thread::spawn(move || {
+        producer.send("hello rust").unwrap();
+    });
+
+    let msg = consumer.recv().unwrap();
+    println!("{}", msg);
 }
