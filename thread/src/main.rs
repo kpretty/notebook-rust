@@ -6,7 +6,9 @@ use std::time::Duration;
 fn main() {
     //create_thread();
     // move_var_thread();
-    demo_channel();
+    // demo_channel();
+    // demo_channel_repeatedly();
+    demo_channel_multiple();
 }
 
 fn create_thread() {
@@ -44,6 +46,7 @@ fn demo_channel() {
     // 开启新线程来发送消息
     thread::spawn(move || {
         thread::sleep(Duration::from_secs(5));
+        // 发送完 msg 所有权就被移交了，这也是为什么规定只能有一个consumer
         let msg = "hello rust";
         producer.send(msg).unwrap();
     });
@@ -61,5 +64,51 @@ fn demo_channel() {
             Err(_) => println!("没有获取到数据"),
         }
         thread::sleep(Duration::from_secs(2));
+    }
+}
+
+fn demo_channel_repeatedly() {
+    let (producer, consumer) = mpsc::channel();
+
+    thread::spawn(move || {
+        let msgs = vec!["hello", "rust", "hi", "coder"];
+        for msg in &msgs {
+            producer.send(*msg).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+        println!("{:?}", msgs);
+    });
+
+    // 将consumer直接应用到迭代器中
+    for msg in consumer {
+        println!("{}", msg);
+    }
+}
+
+fn demo_channel_multiple() {
+    // 多个producer，这里需要使用
+    let (producer, consumer) = mpsc::channel();
+    // 必须要先复制一个
+    let sender = producer.clone();
+    thread::spawn(move || {
+        let msgs = vec!["hello", "rust", "hi", "coder"];
+        for msg in &msgs {
+            producer.send(*msg).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+        println!("{:?}", msgs);
+    });
+    thread::spawn(move || {
+        let msgs = vec!["one", "two", "three", "four"];
+        for msg in &msgs {
+            sender.send(*msg).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+        println!("{:?}", msgs);
+    });
+
+    // 将consumer直接应用到迭代器中
+    for msg in consumer {
+        println!("{}", msg);
     }
 }
