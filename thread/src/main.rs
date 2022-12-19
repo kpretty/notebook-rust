@@ -1,4 +1,5 @@
 use std::sync::mpsc;
+use std::sync::mpsc::TryRecvError;
 use std::thread;
 use std::time::Duration;
 
@@ -42,9 +43,22 @@ fn demo_channel() {
     let (producer, consumer) = mpsc::channel();
     // 开启新线程来发送消息
     thread::spawn(move || {
+        thread::sleep(Duration::from_secs(5));
         producer.send("hello rust").unwrap();
     });
 
-    let msg = consumer.recv().unwrap();
-    println!("{}", msg);
+    // recv会阻塞方法直到获取到值
+    // let msg = consumer.recv().unwrap();
+    // println!("{}", msg);
+    // try_recv 非阻塞方法，会立刻返回Result，可以通过循环不断的获取
+    loop {
+        match consumer.try_recv() {
+            Ok(msg) => {
+                println!("通过 try 获取的:{}", msg);
+                break;
+            }
+            Err(_) => println!("没有获取到数据"),
+        }
+        thread::sleep(Duration::from_secs(2));
+    }
 }
