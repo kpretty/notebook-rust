@@ -44,7 +44,8 @@ fn demo_channel() {
     // 开启新线程来发送消息
     thread::spawn(move || {
         thread::sleep(Duration::from_secs(5));
-        producer.send("hello rust").unwrap();
+        let msg = "hello rust";
+        producer.send(msg).unwrap();
     });
 
     // recv会阻塞方法直到获取到值
