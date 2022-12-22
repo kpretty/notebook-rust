@@ -2,7 +2,6 @@ use std::cell::{Cell, RefCell};
 
 #[cfg(test)]
 mod test {
-    use std::borrow::BorrowMut;
     use super::*;
 
     #[test]
